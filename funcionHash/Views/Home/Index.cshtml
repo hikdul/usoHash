@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1>Funcion Hash</h1>    
+</div>
+
+
+<div class="container" style="margin:50px;">
+    <div class="row">
+        <div class="col-6">
+            <label for="valor">valor a hasshear</label>
+            <input id="valor" name="valor" type="password" />
+            <input type="button" id="btn" value="Codificar">
+        </div>
+        <div class="col-6">
+            <label for="compare">valor a comparar</label>
+            <input id="compare" name="compare" type="password" />
+            <input type="button" id="btnConpare" value="Comparar">
+
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-12 align-self-lg-center" >
+
+            <label for="valorHash">valor Codificado</label>
+            <input id="respuesta" name="valorHash" type="text" maxlength="50000" disabled />
+            <p id="baba"> ---- #### --- </p>
+        </div>
+    </div>
+</div>
+
+    <script>
+
+        const btn = document.getElementById('btn');
+
+        const btnCompare = document.getElementById('btnConpare');
+
+        btn.addEventListener('click', () => {
+
+            const respuesta = document.getElementById('respuesta');
+            const valor = document.getElementById('valor').value;
+
+            $.get("Home/pruebaHash/?valor=" + valor, data => {
+
+                respuesta.value = data;
+            })
+        })
+
+
+        btnCompare.addEventListener('click', () => {
+            const valorCodificado = document.getElementById('respuesta').value;
+            const valorSincodificar = document.getElementById('compare').value;
+            const resp = document.getElementById('baba');
+
+            $.get("Home/comparar/?valorCifrado=" + valorCodificado + "&valornuevo=" + valorSincodificar, respuesta => {
+                if (respuesta) {
+                    resp.innerHTML = "<p style='background: forestgreen; color: aliceblue;'> valores iguales </p>";
+                } else {
+                    resp.innerHTML = "<p style='background: red; color: aliceblue;'> valores diferentes </p>"
+                }
+            })
+
+        })
+
+    </script>
