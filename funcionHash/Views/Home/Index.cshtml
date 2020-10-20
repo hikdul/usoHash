@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    string btnName = "Enc/Des";
 }
 
 <div class="text-center">
@@ -30,9 +31,64 @@
             <p id="baba"> ---- #### --- </p>
         </div>
     </div>
-</div>
+    <div class="row">
+        <div class="col-12 align-self-lg-center">
 
-    <script>
+            <label for="valorin">ingrese valor a encriptar</label>
+            <input id="valorIn" name="valorin" type="text" maxlength="50000" />
+            <label for="valorCrip"> valor encriptado || en database</label>
+            <input id="valorCrip" name="valorCrip" type="text" maxlength="50000" disabled />
+
+
+        </div>
+
+        <div class="col-12 align-self-lg-center">
+            <label for="valorOut">valor desencriptado || al salir de database</label>
+            <input id="valorOut" name="valorout" type="text" maxlength="50000" disabled />
+        </div>
+        <div class="col-12 align-self-lg-center">
+            <button id="btnCrip">@btnName</button>
+
+            @*<button id="btnDCrip">Desencriptar</button>*@
+        </div>
+        </div>
+    </div>
+
+<script>
+
+        @*let toggle*@
+        const btnCrip = document.getElementById('btnCrip');
+    const btnDC = document.getElementById('btnDCrip');
+
+
+
+    btnCrip.addEventListener('click', () => {
+
+        
+
+            let original = document.getElementById("valorIn");
+            let valorHash = document.getElementById("valorCrip");
+            let valorDesE = document.getElementById("valorOut");
+
+            if (origin.value === "")
+                alert("ingrese un valor");
+
+            $.get("Home/Encriptar/?Cadena=" + original.value, data => {
+                valorHash.value = data;
+                @*toggle = "Desencriptar";*@
+            });
+            $.get("Home/Desencriptar/?Cadena=" + valorHash.value, data => {
+                valorDesE.value = data;
+                @*toggle = "Encriptar";*@
+            });
+
+              @*@btnName = toggle;*@ 
+
+        });
+
+
+
+        /// ####################################
 
         const btn = document.getElementById('btn');
 
@@ -65,4 +121,4 @@
 
         })
 
-    </script>
+</script>

@@ -38,6 +38,17 @@ namespace funcionHash.Controllers
         }
 
 
+        public string Encriptar(string Cadena)
+        {
+            return funcionHA.Base64_Encode(Cadena);
+        }
+
+        public string Desencriptar(string Cadena)
+        {
+            return funcionHA.Base64_Decode(Cadena);
+        }
+
+
         public IActionResult Privacy()
         {
             return View();
