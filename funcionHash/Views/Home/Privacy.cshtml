@@ -3,4 +3,52 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<h1 class="display-1"> muestra de la funcion AES</h1>
+
+
+<div class="UsoFunAES">
+
+    <label for="claveI">ingrese valor</label>
+    <input type="text" id="claveI" placeholder="Ingrese Valor a cifrar" />
+    <label for="claveO">Valor Cifrado</label>
+    <input type="text" id="claveO" placeholder="Valor Cifrado" />
+    <br />
+    <button id="btnc">Cifrar</button>
+    <hr />
+
+    <label for="claveRO">ingrese valor</label>
+    <input type="text" id="claveRO" placeholder="valor Descifrado" />
+    <button id="btn">Descifrar</button>
+
+
+</div>
+
+
+<script>
+
+   const btnC = document.getElementById("btnc");
+    const btnD = document.getElementById("btn");
+
+    let valorI = document.getElementById("claveI");
+    let valorO = document.getElementById("claveO");
+    let valorRO = document.getElementById("claveRO"); 
+
+
+    btnC.addEventListener('click', () => {
+        $.get("cifrarAES/?textoAcifrar=" + valorI.value, data => {
+            valorO.value = data;
+
+        });
+    })
+
+    btnD.addEventListener('click', () => {
+        $.get("descifrarAES/?textoCifrado=" + valorO.value, data => {
+            valorRO.value = data;
+
+        });
+    })
+
+
+</script>
+
+

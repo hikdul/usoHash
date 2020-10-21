@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using funcionHash.Models;
 using funcionHash.Helpers;
+using Microsoft.Extensions.Options;
 
 namespace funcionHash.Controllers
 {
@@ -52,6 +53,39 @@ namespace funcionHash.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+        /// <summary>
+        /// aqui si uso el cifrado
+        /// </summary>
+        /// <param name="textoAcifrar"></param>
+        /// <returns></returns>
+        public string cifrarAES(string textoAcifrar)
+        {
+            string salt = "salt";
+            string palabrPaso = "palabraso";
+            string algoritmoCifrado = "MD5";
+            int vueltas = 22;
+            string num16car = "1234567891234567";
+            int TAMClave = 128;
+
+
+
+            var valor = AES.cifrarTextoAES(textoAcifrar, palabrPaso, salt, algoritmoCifrado, vueltas, num16car, TAMClave);
+
+            return valor;
+        }
+
+        public string descifrarAES(string textoCifrado)
+        {
+            string salt = "salt";
+            string palabrPaso = "palabraso";
+            string algoritmoCifrado = "MD5";
+            int vueltas = 22;
+            string num16car = "1234567891234567";
+            int TAMClave = 128;
+
+            var valor = AES.descifrarTextoAES(textoCifrado, palabrPaso, salt, algoritmoCifrado, vueltas, num16car, TAMClave);
+            return valor;
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
