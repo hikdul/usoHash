@@ -88,6 +88,27 @@ namespace funcionHash.Controllers
             return valor;
         }
 
+        /// <summary>
+        /// aqui usaremos las pruebsa con md5
+        /// </summary>
+        /// <returns></returns>
+
+
+        public string md5C(string valor)
+        {
+            var retorno = MD5.Encriptar(valor);
+            return retorno;
+        }
+
+        public string md5D(string valor)
+        {
+            var retorno = MD5.Desencriptar(valor);
+            return retorno;
+        }
+
+
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

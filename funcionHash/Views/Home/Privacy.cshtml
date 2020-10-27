@@ -23,8 +23,47 @@
 
 </div>
 
+<h1 class="display-1"> muestra de la funcion MD5</h1>
+
+<div class="MD5">
+
+    <label for="ci">ingrese valor</label>
+    <input type="text" id="ci" placeholder="Ingrese Valor a cifrar" />
+    <label for="co">Valor Cifrado</label>
+    <input type="text" id="co" placeholder="Valor Cifrado" disabled />
+    <br />
+    <button id="crip">Cifrar</button>
+    <hr />
+
+    <label for="cr">ingrese valor</label>
+    <input type="text" id="cr" placeholder="valor Descifrado" disabled />
+    <button id="boton2">Descifrar</button>
+
+</div>
+
 
 <script>
+
+
+    const MDbtnC = document.getElementById('crip');
+    const MDbtnD = document.getElementById('boton2');
+    let v1 = document.getElementById('ci');
+    let v2 = document.getElementById('co');
+    let v3 = document.getElementById('cr');
+
+    MDbtnC.addEventListener('click', () => {
+        $.get("md5C/?valor=" + v1.value, data => {
+            v2.value = data;
+        });
+    });
+
+    MDbtnD.addEventListener('click', () => {
+            $.get("md5D/?valor=" + v2.value, data => {
+                v3.value = data;
+            });
+    });
+
+
 
    const btnC = document.getElementById("btnc");
     const btnD = document.getElementById("btn");
